@@ -33,7 +33,7 @@ int main(void)
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
   Delay_Init();
 	USART_Printf_Init(115200);
-	printf("Start @Chip_ID:%08x\r\n", DBGMCU->IDCODE );
+	printf("SystemClk:%d\r\n",SystemCoreClock);
 	printf("CRC TEST\r\n");
   
 	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_CRC, ENABLE);

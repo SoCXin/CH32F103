@@ -101,8 +101,8 @@ int main(void)
 	
 	Delay_Init();
 	USART_Printf_Init(115200);
-	printf( "Start @Chip_ID:%08x\r\n", DBGMCU->IDCODE );
-	
+	printf("SystemClk:%d\r\n",SystemCoreClock);
+
 	ADC_Function_Init();
 	
 	while(1)

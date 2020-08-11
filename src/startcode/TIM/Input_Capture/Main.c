@@ -90,7 +90,7 @@ void TIM1_CC_IRQHandler(void)
 int main(void)
 {
 	USART_Printf_Init(115200);
-	printf( "Start @Chip_ID:%08x\r\n", DBGMCU->IDCODE );
+	printf("SystemClk:%d\r\n",SystemCoreClock);
 	
   Input_Capture_Init( 0xFFFF, 48000-1 );	
 	

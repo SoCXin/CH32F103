@@ -27,10 +27,10 @@ void mStopIfError( UINT8 iError )
         return;    /* 操作成功 */
     }
     printf( "Error: %02X\n", (UINT16)iError );  /* 显示错误 */
-    /* 遇到错误后,应该分析错误码以及CH554DiskStatus状态,例如调用CH579DiskReady查询当前U盘是否连接,如果U盘已断开那么就重新等待U盘插上再操作,
+    /* 遇到错误后,应该分析错误码以及CH103DiskStatus状态,例如调用CH103DiskReady查询当前U盘是否连接,如果U盘已断开那么就重新等待U盘插上再操作,
        建议出错后的处理步骤:
-       1、调用一次CH579DiskReady,成功则继续操作,例如Open,Read/Write等
-       2、如果CH579DiskReady不成功,那么强行将从头开始操作(等待U盘连接，CH554DiskReady等) */
+       1、调用一次CH103DiskReady,成功则继续操作,例如Open,Read/Write等
+       2、如果CH103DiskReady不成功,那么强行将从头开始操作 */
     while ( 1 )
     {  }
 }
@@ -61,7 +61,7 @@ int main()
     NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
     Delay_Init();
 	USART_Printf_Init(115200);
-	printf("Start @Chip_ID:%08x\r\n", DBGMCU->IDCODE );
+	printf("SystemClk:%d\r\n",SystemCoreClock);;
 	
 	printf("USBHD   HOST Test\r\n");
 	USBHD_ClockCmd(RCC_USBCLKSource_PLLCLK_1Div5,ENABLE); 
@@ -78,9 +78,17 @@ int main()
 		if ( R8_USB_INT_FG & RB_UIF_DETECT )
 		{  
 			R8_USB_INT_FG = RB_UIF_DETECT ; 
-			printf( "Wait Device In\n" );
+
 			s = AnalyzeRootHub( );   
-			if ( s == ERR_USB_CONNECT ) FoundNewDev = 1;
+			if ( s == ERR_USB_CONNECT ) 
+			{
+				printf( "New Device In\r\n" );		
+				FoundNewDev = 1;
+			}
+			if( s == ERR_USB_DISCON )
+			{
+				printf( "Device Out\r\n" );					
+			}
 		}
 		
 		if ( FoundNewDev || s == ERR_USB_CONNECT ) 
@@ -90,7 +98,7 @@ int main()
 			s = InitRootDevice( Com_Buffer );  
 			 if ( s == ERR_SUCCESS )
             {
-                // U盘操作流程：USB总线复位、U盘连接、获取设备描述符和设置USB地址、可选的获取配置描述符，之后到达此处，由CH579子程序库继续完成后续工作
+                // U盘操作流程：USB总线复位、U盘连接、获取设备描述符和设置USB地址、可选的获取配置描述符，之后到达此处，由CH103子程序库继续完成后续工作
                 CH103DiskStatus = DISK_USB_ADDR;
                 for ( i = 0; i != 10; i ++ )
                 {
@@ -109,7 +117,7 @@ int main()
 			   if ( CH103DiskStatus >= DISK_MOUNTED )
                 {                    
                   /* 读文件 */
-                  strcpy( (PCHAR)mCmdParam.Open.mPathName, "/C51/NEWFILE.C" );     //设置将要操作的文件路径和文件名/C51/CH579HFT.C
+                  strcpy( (PCHAR)mCmdParam.Open.mPathName, "/C51/NEWFILE.C" );     //设置将要操作的文件路径和文件名/C51/NEWFILE.C
                   s = CH103FileOpen( );                                      //打开文件
                   if ( s == ERR_MISS_DIR || s == ERR_MISS_FILE ) {           //没有找到文件
                        //创建文件演示
@@ -119,7 +127,7 @@ int main()
                     mStopIfError( s );
                     printf( "ByteWrite\n" );
                     //实际应该判断写数据长度和定义缓冲区长度是否相符，如果大于缓冲区长度则需要多次写入
-                    i = sprintf( (PCHAR)buf,"Note: \xd\xa这个程序是以字节为单位进行U盘文件读写,579简单演示功能。\xd\xa");  /*演示 */
+                    i = sprintf( (PCHAR)buf,"Note: \xd\xa这个程序是以字节为单位进行U盘文件读写,简单演示功能。\xd\xa");  /*演示 */
                     for(c=0; c<10; c++)
                     {
                         mCmdParam.ByteWrite.mByteCount = i;                          /* 指定本次写入的字节数 */
@@ -140,12 +148,7 @@ int main()
                     mCmdParam.Close.mUpdateLen = 1;                                  /* 自动计算文件长度,以字节为单位写文件,建议让程序库关闭文件以便自动更新文件长度 */
                     i = CH103FileClose( );
                     mStopIfError( i );
-                    
-//                  strcpy( (PCHAR)mCmdParam.Create.mPathName, "/NEWFILE.TXT" );          /* 新文件名,在根目录下,中文文件名 */
-//                  s = CH579FileOpen( );                                        /* 新建文件并打开,如果文件已经存在则先删除后再新建 */
-//                  mStopIfError( s );
-                   
-                    
+                                     
                     /* 删除某文件 */
 //                    printf( "Erase\n" );
 //                    strcpy( (PCHAR)mCmdParam.Create.mPathName, "/OLD" );  //将被删除的文件名,在根目录下
@@ -160,7 +163,7 @@ int main()
 						mCmdParam.ByteLocate.mByteOffset = 0xffffffff;  //移到文件的尾部
 						CH103ByteLocate( );
 						 //实际应该判断写数据长度和定义缓冲区长度是否相符，如果大于缓冲区长度则需要多次写入
-						i = sprintf( (PCHAR)buf,"Note: \xd\xa这个程序是以字节为单位进行U盘文件读写,579简单演示功能。\xd\xa");  /*演示 */
+						i = sprintf( (PCHAR)buf,"Note: \xd\xa这个程序是以字节为单位进行U盘文件读写,简单演示功能。\xd\xa");  /*演示 */
 						for(c=0; c<10; c++)
 						{
                         mCmdParam.ByteWrite.mByteCount = i;                          /* 指定本次写入的字节数 */
@@ -169,13 +172,11 @@ int main()
                         mStopIfError( s );
                         printf("成功写入 %02X次\n",(UINT16)c);
 						}
-//                  mCmdParam.ByteWrite.mByteCount = 0;  //写入0个字节的数据,实际上该操作用于通知程序库更新文件长度
-//                  CH579ByteWrite( );   //写入0字节的数据,用于自动更新文件的长度,如果不这样做,那么执行CH554FileClose时也会自动更新文件长度
 																			
 						///////////二、读取文件前N字节/////////////////////////////////////////
 						TotalCount = 100;                                      //设置准备读取总长度100字节
 						printf( "读出的前%d个字符是:\n",TotalCount );
-						while ( TotalCount ) {                                 //如果文件比较大,一次读不完,可以再调用CH579ByteRead继续读取,文件指针自动向后移动
+						while ( TotalCount ) {                                 //如果文件比较大,一次读不完,可以再调用CH103ByteRead继续读取,文件指针自动向后移动
                            if ( TotalCount > (MAX_PATH_LEN-1) ) c = MAX_PATH_LEN-1;/* 剩余数据较多,限制单次读写的长度不能超过 sizeof( mCmdParam.Other.mBuffer ) */
                            else c = TotalCount;                                 /* 最后剩余的字节数 */
                            mCmdParam.ByteRead.mByteCount = c;                   /* 请求读出几十字节数据 */
@@ -190,11 +191,6 @@ int main()
                            }
                       }
 					///////////三、从指定位置读取文件N字节/////////////////////////////////////////
-//							mCmdParam.ByteLocate.mByteOffset = 608;  //移动文件指针，跳过文件的前608个字节开始读写
-//							CH579ByteLocate( );
-//							mCmdParam.ByteRead.mByteCount = 5;  //读取5个字节
-//							mCmdParam.ByteRead.mByteBuffer= &buf[0];
-//							CH579ByteRead( );   //直接读取文件的第608个字节到612个字节数据,前608个字节被跳过
 						
 							printf( "Close\n" );
 							i = CH103FileClose( );                                    /* 关闭文件 */

@@ -42,7 +42,7 @@ int main(void)
   Delay_Init();
 	USART_Printf_Init(115200);
 	GPIO_Toggle_INIT();
-	printf("Start @Chip_ID:%08x\r\n", DBGMCU->IDCODE );
+	printf("SystemClk:%d\r\n",SystemCoreClock);
 	printf("GPIO Toggle TEST\r\n");
     
 	while(1)

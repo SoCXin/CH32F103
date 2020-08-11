@@ -26,7 +26,7 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-//#include "ch32f10x_usb.h"
+
 /* ********************************************************************************************************************* */
 
 /* FILE: CH32F103UF.H */
@@ -101,7 +101,6 @@ typedef struct _FAT_DIR_INFO {
 } FAT_DIR_INFO;							/* 20H */
 
 typedef FAT_DIR_INFO *PX_FAT_DIR_INFO;
-
 
 /* 文件属性 */
 #define ATTR_READ_ONLY			0x01	/* 文件为只读属性 */
@@ -316,7 +315,7 @@ extern	UINT8	CH103ByteWrite( void );		/* 以字节为单位向当前位置写入数据块 */
 #endif
 extern	UINT8	CH103DiskQuery( void );		/* 查询磁盘信息 */
 extern	void	CH103SaveVariable( void );	/* 备份/保存/恢复子程序库的变量,用于子程序库在多个芯片或者U盘之间进行切换 */
- 
+
 extern	UINT8	USBHostTransact( UINT8 endp_pid, UINT8 tog, UINT32 timeout );	// CH103传输事务,输入目的端点地址/PID令牌,同步标志,NAK重试时间,返回0成功,超时/出错重试
 extern	UINT8	HostCtrlTransfer( PUINT8 DataBuf, PUINT8 RetLen );	// 执行控制传输,8字节请求码在pSetupReq中,DataBuf为可选的收发缓冲区,实际收发长度返回在ReqLen指向的变量中
 extern	void	CopySetupReqPkg( const UINT8 * pReqPkt );  // 复制控制传输的请求包
@@ -326,7 +325,7 @@ extern	UINT8	CtrlGetConfigDescr( PUINT8 DataBuf );  // 获取配置描述符
 extern	UINT8	CtrlSetUsbConfig( UINT8 cfg );  // 设置USB设备配置
 extern	UINT8	CtrlClearEndpStall( UINT8 endp );  // 清除端点STALL
 //extern	UINT8	CtrlGetHubDescr( PUINT8 DataBuf );  // 获取HUB描述符
-//extern	UINT8	HubGetPortStatus( UINT8 HubPortIndex );//extern	UINT8	HubGetPortStatus( UINT8 HubPortIndex, PUINT8 DataBuf );  // 查询HUB端口状态
+//extern	UINT8	HubGetPortStatus( UINT8 HubPortIndex, PUINT8 DataBuf );  // 查询HUB端口状态
 //extern	UINT8	HubSetPortFeature( UINT8 HubPortIndex, UINT8 FeatureSelt );  // 设置HUB端口特性
 //extern	UINT8	HubClearPortFeature( UINT8 HubPortIndex, UINT8 FeatureSelt );  // 清除HUB端口特性
 

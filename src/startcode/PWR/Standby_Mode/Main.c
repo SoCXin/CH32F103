@@ -24,7 +24,7 @@ int main(void)
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
   Delay_Init();
 	USART_Printf_Init(115200);
-	printf("Start @Chip_ID:%08x\r\n", DBGMCU->IDCODE );
+	printf("SystemClk:%d\r\n",SystemCoreClock);
 	printf("Standby Mode Test\r\n");
 	
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_PWR , ENABLE);

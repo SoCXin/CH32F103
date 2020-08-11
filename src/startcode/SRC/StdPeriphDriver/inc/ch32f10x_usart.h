@@ -109,13 +109,16 @@ typedef struct
 #define USART_IT_TXE                         ((uint16_t)0x0727)
 #define USART_IT_TC                          ((uint16_t)0x0626)
 #define USART_IT_RXNE                        ((uint16_t)0x0525)
+#define USART_IT_ORE_RX                      ((uint16_t)0x0325) 
 #define USART_IT_IDLE                        ((uint16_t)0x0424)
 #define USART_IT_LBD                         ((uint16_t)0x0846)
 #define USART_IT_CTS                         ((uint16_t)0x096A)
 #define USART_IT_ERR                         ((uint16_t)0x0060)
-#define USART_IT_ORE                         ((uint16_t)0x0360)
+#define USART_IT_ORE_ER                      ((uint16_t)0x0360)
 #define USART_IT_NE                          ((uint16_t)0x0260)
 #define USART_IT_FE                          ((uint16_t)0x0160)
+
+#define USART_IT_ORE                          USART_IT_ORE_ER 
 
 /* USART_DMA_Requests */
 #define USART_DMAReq_Tx                      ((uint16_t)0x0080)

@@ -76,7 +76,7 @@ void TIM1_Dead_Time_Init( u16 arr, u16 psc, u16 ccp )
 int main(void)
 {
 	USART_Printf_Init(115200);
-	printf( "Start @Chip_ID:%08x\r\n", DBGMCU->IDCODE );
+	printf("SystemClk:%d\r\n",SystemCoreClock);
 
 	/* Complementary output with dead-time insertion */
 	TIM1_Dead_Time_Init( 100, 48-1, 50 );	

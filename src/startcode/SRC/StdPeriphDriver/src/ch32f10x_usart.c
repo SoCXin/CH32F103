@@ -650,7 +650,8 @@ void USART_ClearFlag(USART_TypeDef* USARTx, uint16_t USART_FLAG)
 *                    USART_IT_TC: Transmission complete interrupt.
 *                    USART_IT_RXNE: Receive Data register not empty interrupt.
 *                    USART_IT_IDLE: Idle line detection interrupt.
-*                    USART_IT_ORE: OverRun Error interrupt.
+*                    USART_IT_ORE_RX : OverRun Error interrupt if the RXNEIE bit is set.
+*                    USART_IT_ORE_ER : OverRun Error interrupt if the EIE bit is set. 
 *                    USART_IT_NE: Noise Error interrupt.
 *                    USART_IT_FE: Framing Error interrupt.
 *                    USART_IT_PE: Parity Error interrupt.

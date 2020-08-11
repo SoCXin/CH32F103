@@ -29,7 +29,6 @@ void EXTI0_INT_INIT(void)
  
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0;              
   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;           
-  GPIO_InitStructure.GPIO_Speed=GPIO_Speed_50MHz;
   GPIO_Init(GPIOA, &GPIO_InitStructure);                  
 
    /* GPIOA ----> EXTI_Line0 */
@@ -60,7 +59,7 @@ int main(void)
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
   Delay_Init();
 	USART_Printf_Init(115200);
-	printf("Start @Chip_ID:%08x\r\n", DBGMCU->IDCODE );
+	printf("SystemClk:%d\r\n",SystemCoreClock);
 	printf("EXTI0 Test\r\n");
 	EXTI0_INT_INIT();
 

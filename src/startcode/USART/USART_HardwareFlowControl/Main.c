@@ -94,7 +94,7 @@ int main(void)
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
   Delay_Init();
 	USART1_ReCFG();                                               /* USART1 Reinitialize */
-	printf("Start @Chip_ID:%08x\r\n", DBGMCU->IDCODE );
+	printf("SystemClk:%d\r\n",SystemCoreClock);
 	printf("USART1 Hardware Flow Control TEST\r\n");
   
 	while(TxCnt<TxSize)

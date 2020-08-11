@@ -61,7 +61,7 @@ void TIM1_ETRClockMode2_Init(void)
 int main(void)
 {
 	USART_Printf_Init(115200);
-	printf( "Start @Chip_ID:%08x\r\n", DBGMCU->IDCODE );
+	printf("SystemClk:%d\r\n",SystemCoreClock);
 
 #if (ETR_CLK == ETR_CLK_MODE1)	
 	TIM1_ETRClockMode1_Init( );	

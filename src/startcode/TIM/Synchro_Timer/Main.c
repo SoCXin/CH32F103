@@ -132,8 +132,7 @@ void TIM_TimSynchroMode4_Init(void)
 int main(void)
 {
 	USART_Printf_Init(115200);
-	printf( "Start @Chip_ID:%08x\r\n", DBGMCU->IDCODE );
-
+	printf("SystemClk:%d\r\n",SystemCoreClock);
 /* Timer synchronization Mode Selection */
 	TIM_TimSynchroMode1_Init();
 //	TIM_TimSynchroMode2_Init();	

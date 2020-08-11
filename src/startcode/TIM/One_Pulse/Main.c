@@ -36,7 +36,8 @@ void One_Pulse_Init( u16 arr, u16 psc, u16 ccp )
 	TIM_TimeBaseInitStructure.TIM_Period = arr;	
 	TIM_TimeBaseInitStructure.TIM_Prescaler = psc;	
 	TIM_TimeBaseInitStructure.TIM_ClockDivision = TIM_CKD_DIV1;	
-	TIM_TimeBaseInitStructure.TIM_CounterMode = TIM_CounterMode_Up;	
+	TIM_TimeBaseInitStructure.TIM_CounterMode = TIM_CounterMode_Up;
+	TIM_TimeBaseInitStructure.TIM_RepetitionCounter = 0;	
 	TIM_TimeBaseInit( TIM1, &TIM_TimeBaseInitStructure);	
 
 	TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM2;	
@@ -68,6 +69,9 @@ void One_Pulse_Init( u16 arr, u16 psc, u16 ccp )
 *******************************************************************************/
 int main(void)
 {
+	USART_Printf_Init(115200);
+	printf("SystemClk:%d\r\n",SystemCoreClock);
+		
 	One_Pulse_Init( 200, 48000-1, 100 );	
 	
 	while(1);

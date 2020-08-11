@@ -158,11 +158,15 @@ void USBD_Reset(void)
   Clear_Status_Out(ENDP0);
   SetEPRxCount(ENDP0, Device_Property.MaxPacketSize);
   SetEPRxValid(ENDP0);
+  _ClearDTOG_RX(ENDP0);
+  _ClearDTOG_TX(ENDP0);
 
   SetEPType(ENDP1, EP_BULK);
   SetEPTxAddr(ENDP1, ENDP1_TXADDR);
   SetEPTxStatus(ENDP1, EP_TX_NAK);
   SetEPRxStatus(ENDP1, EP_RX_DIS);
+  _ClearDTOG_RX(ENDP1);
+  _ClearDTOG_TX(ENDP1);
 
   SetEPType(ENDP2, EP_BULK);
   SetEPTxAddr(ENDP2, ENDP2_TXADDR);
@@ -170,12 +174,16 @@ void USBD_Reset(void)
   SetEPRxCount(ENDP2, USBD_DATA_SIZE);
   SetEPRxStatus(ENDP2, EP_RX_VALID);
   SetEPTxStatus(ENDP2, EP_TX_NAK);
+  _ClearDTOG_RX(ENDP2);
+  _ClearDTOG_TX(ENDP2);
 
   SetEPType(ENDP3, EP_INTERRUPT);
   SetEPRxAddr(ENDP3, ENDP3_RXADDR);
   SetEPRxCount(ENDP3, USBD_DATA_SIZE);
   SetEPRxStatus(ENDP3, EP_RX_VALID);
   SetEPTxStatus(ENDP3, EP_TX_DIS);
+  _ClearDTOG_RX(ENDP3);
+  _ClearDTOG_TX(ENDP3);
    
   SetDeviceAddress(0);
   

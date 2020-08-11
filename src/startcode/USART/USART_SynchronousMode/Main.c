@@ -141,7 +141,7 @@ int main(void)
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
   Delay_Init();
 	USART_Printf_Init(115200);                                         /* printf using USART2 */
-	printf("Start @Chip_ID:%08x\r\n", DBGMCU->IDCODE );
+	printf("SystemClk:%d\r\n",SystemCoreClock);
 	printf("USART SynchromousMode TEST\r\n");
   USART1_ReCFG();                                                   /* USART1 ReInitializes */  
   SPI1_INIT();

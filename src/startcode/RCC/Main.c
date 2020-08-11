@@ -25,7 +25,7 @@ int main(void)
 	
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_4);
 	USART_Printf_Init(115200);
-	printf( "Start @Chip_ID:%08x\r\n", DBGMCU->IDCODE );
+	printf("SystemClk:%d\r\n",SystemCoreClock);
 	
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8;				
   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP; 		

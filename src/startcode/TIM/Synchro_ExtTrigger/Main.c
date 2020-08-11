@@ -80,7 +80,7 @@ void TIM1_Synchro_ExtTrigger_Init( u16 arr, u16 psc )
 int main(void)
 {
 	USART_Printf_Init(115200);
-	printf( "Start @Chip_ID:%08x\r\n", DBGMCU->IDCODE );
+	printf("SystemClk:%d\r\n",SystemCoreClock);
 	
 	TIM1_Synchro_ExtTrigger_Init( 0xFFFF, 48000-1);	
 	

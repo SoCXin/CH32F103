@@ -128,7 +128,7 @@ mDiskDisconn:
 		}
 	}
 #ifndef	FOR_ROOT_UDISK_ONLY
-	else if ( R8_USB_DEV_AD > 0x10 && R8_USB_DEV_AD <= 0x14 || R8_USB_DEV_AD > 0x20 && R8_USB_DEV_AD <= 0x24 ) {  /* 外部HUB的端口下的USB设备 */
+	else if ( (R8_USB_DEV_AD > 0x10 && R8_USB_DEV_AD <= 0x14) || (R8_USB_DEV_AD > 0x20 && R8_USB_DEV_AD <= 0x24) ) {  /* 外部HUB的端口下的USB设备 */
 		if ( ( R8_USB_DEV_AD & 0x20 ? UHUB1_CTRL : UHUB0_CTRL ) & RB_UH_PORT_EN ) {  /* 内置Root-HUB下的外部HUB存在且未插拔 */
 			TxBuffer[ MAX_PACKET_SIZE - 1 ] = R8_USB_DEV_AD;  /* 备份 */
 			R8_USB_DEV_AD = USB_DEVICE_ADDR - 1 + ( R8_USB_DEV_AD >> 4 );  /* 设置USB主机端的USB地址指向HUB */
@@ -146,8 +146,6 @@ mDiskDisconn:
 					return( ERR_SUCCESS );  /* USB设备已经连接或者断开后重新连接 */
 				}
 				else {
-//					CH103DiskStatus = DISK_DISCONNECT;
-//					return( ERR_USB_DISCON );
 					CH103DiskStatus = DISK_CONNECT;
 					return( ERR_HUB_PORT_FREE );  /* HUB已经连接但是HUB端口尚未连接磁盘 */
 				}
@@ -155,8 +153,6 @@ mDiskDisconn:
 			else {
 				R8_USB_DEV_AD = TxBuffer[ MAX_PACKET_SIZE - 1 ];  /* 设置USB主机端的USB地址指向USB设备 */
 				if ( CH103IntStatus == ERR_USB_DISCON ) {
-//					CH103DiskStatus = DISK_DISCONNECT;
-//					return( ERR_USB_DISCON );
 					goto mDiskDisconn;
 				}
 				else {
@@ -166,18 +162,15 @@ mDiskDisconn:
 			}
 		}
 		else if ( R8_USB_MIS_ST & (UINT8)( R8_USB_DEV_AD & 0x20 ? bUHS_H1_ATTACH : bUHS_H0_ATTACH ) ) {  /* 内置Root-HUB下的USB设备存在,外部HUB或USB设备已经连接或者断开后重新连接 */
-//			CH103DiskStatus = DISK_CONNECT;  /* 曾经断开过 */
-//			return( ERR_SUCCESS );  /* 外部HUB或USB设备已经连接或者断开后重新连接 */
 			goto mDiskConnect;
 		}
 		else {  /* 外部HUB断开 */
 			CH103DiskStatus = DISK_DISCONNECT;
+			goto mDiskDisconn;
 		}
 	}
 #endif
 	else {
-//		CH103DiskStatus = DISK_DISCONNECT;
-//		return( ERR_USB_DISCON );
 		goto mDiskDisconn;
 	}
 }

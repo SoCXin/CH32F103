@@ -66,9 +66,20 @@ void RTC_ExitConfigMode(void)
 *********************************************************************************/	
 uint32_t RTC_GetCounter(void)
 {
-  uint16_t tmp = 0;
-  tmp = RTC->CNTL;
-  return (((uint32_t)RTC->CNTH << 16 ) | tmp) ;
+  uint16_t high1 = 0, high2 = 0, low = 0;
+
+  high1 = RTC->CNTH;
+  low   = RTC->CNTL;
+  high2 = RTC->CNTH;
+
+  if (high1 != high2)
+  { 
+    return (((uint32_t) high2 << 16 ) | RTC->CNTL);
+  }
+  else
+  { 
+    return (((uint32_t) high1 << 16 ) | low);
+  }
 }
 
 

@@ -109,7 +109,7 @@ void TIM1_PWM_In( u16 arr, u16 psc, u16 ccp )
 int main(void)
 {
 	USART_Printf_Init(115200);
-	printf( "Start @Chip_ID:%08x\r\n", DBGMCU->IDCODE );
+	printf("SystemClk:%d\r\n",SystemCoreClock);
 	
 	ADC_Function_Init();
 	TIM1_PWM_In( 1000, 48000-1, 500 );	

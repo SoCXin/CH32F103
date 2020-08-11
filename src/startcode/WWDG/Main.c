@@ -90,7 +90,7 @@ int main(void)
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
   Delay_Init();
 	USART_Printf_Init(115200);
-	printf("Start @Chip_ID:%08x\r\n", DBGMCU->IDCODE );
+	printf("SystemClk:%d\r\n",SystemCoreClock);
 	printf("WWDG Test\r\n");
 	WWDG_Config(0x7f,0x5f,WWDG_Prescaler_8);      /* 36M/8/4096 */
   wwdg_wr=WWDG->CFGR & 0x7F; 

@@ -308,21 +308,6 @@ typedef volatile unsigned long  *PUINT32V;
 #define	R8_UEP4_T_LEN		(*((PUINT8V)(0x40023430)))	// endpoint 4 transmittal length
 #define	R8_UEP4_CTRL		(*((PUINT8V)(0x40023432)))	// endpoint 4 control
 
-#define	R8_USB_TYPE_C_CTRL 	(*((PUINT8V)(0x40023438)))	// USB type-C control
-#define 	RB_UTCC_GP_BIT      0x80      // USB general purpose bit
-#define 	RB_UCC2_PD_EN       0x40      // USB CC2 5.1K pulldown resistance: 0=disable, 1=enable pulldown
-#define 	RB_UCC2_PU1_EN      0x20      // USB CC2 pullup resistance control high bit
-#define 	RB_UCC2_PU0_EN      0x10      // USB CC2 pullup resistance control low bit
-#define 	RB_VBUS_PD_EN       0x08      // USB VBUS 10K pulldown resistance: 0=disable, 1=enable pullup
-#define 	RB_UCC1_PD_EN       0x04      // USB CC1 5.1K pulldown resistance: 0=disable, 1=enable pulldown
-#define 	RB_UCC1_PU1_EN      0x02      // USB CC1 pullup resistance control high bit
-#define 	RB_UCC1_PU0_EN      0x01      // USB CC1 pullup resistance control low bit
-//   RB_UCC?_PU1_EN & RB_UCC?_PU0_EN: USB CC pullup resistance selection
-//   00: disable pullup resistance
-//   01: enable 36K pullup resistance for default USB power
-//   10: enable 12K pullup resistance for 1.5A USB power
-//   11: enable 4.7K pullup resistance for 3A USB power
-
 
 #ifdef __cplusplus
 }

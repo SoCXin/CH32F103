@@ -24,10 +24,10 @@ void mStopIfError( UINT8 iError )
         return;    /* 操作成功 */
     }
     printf( "Error: %02X\n", (UINT16)iError );  /* 显示错误 */
-    /* 遇到错误后,应该分析错误码以及CH554DiskStatus状态,例如调用CH579DiskReady查询当前U盘是否连接,如果U盘已断开那么就重新等待U盘插上再操作,
+    /* 遇到错误后,应该分析错误码以及CH103DiskStatus状态,例如调用CH103DiskReady查询当前U盘是否连接,如果U盘已断开那么就重新等待U盘插上再操作,
        建议出错后的处理步骤:
-       1、调用一次CH579DiskReady,成功则继续操作,例如Open,Read/Write等
-       2、如果CH579DiskReady不成功,那么强行将从头开始操作(等待U盘连接，CH554DiskReady等) */
+       1、调用一次CH103DiskReady,成功则继续操作,例如Open,Read/Write等
+       2、如果CH103DiskReady不成功,那么强行将从头开始操作(等待U盘连接，CH103DiskReady等) */
     while ( 1 )
     {  }
 }
@@ -503,7 +503,7 @@ int main()
     NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
     Delay_Init();
 	USART_Printf_Init(115200);
-	printf("Start @Chip_ID:%08x\r\n", DBGMCU->IDCODE );
+	printf("SystemClk:%d\r\n",SystemCoreClock);
 	
 	printf("USBHD   HOST Test\r\n");
 	USBHD_ClockCmd(RCC_USBCLKSource_PLLCLK_1Div5,ENABLE); 
@@ -520,9 +520,17 @@ int main()
 		if ( R8_USB_INT_FG & RB_UIF_DETECT )
 		{  
 			R8_USB_INT_FG = RB_UIF_DETECT ; 
-			printf( "Wait Device In\n" );
+
 			s = AnalyzeRootHub( );   
-			if ( s == ERR_USB_CONNECT ) FoundNewDev = 1;
+			if ( s == ERR_USB_CONNECT ) 
+			{
+				printf( "New Device In\r\n" );		
+				FoundNewDev = 1;
+			}
+			if( s == ERR_USB_DISCON )
+			{
+				printf( "Device Out\r\n" );					
+			}
 		}
 		
 		if ( FoundNewDev || s == ERR_USB_CONNECT ) 
@@ -532,7 +540,7 @@ int main()
 			s = InitRootDevice( Com_Buffer );  
 			 if ( s == ERR_SUCCESS )
             {
-                // U盘操作流程：USB总线复位、U盘连接、获取设备描述符和设置USB地址、可选的获取配置描述符，之后到达此处，由CH579子程序库继续完成后续工作
+                // U盘操作流程：USB总线复位、U盘连接、获取设备描述符和设置USB地址、可选的获取配置描述符，之后到达此处，由CH103子程序库继续完成后续工作
                 CH103DiskStatus = DISK_USB_ADDR;
                 for ( i = 0; i != 10; i ++ )
                 {

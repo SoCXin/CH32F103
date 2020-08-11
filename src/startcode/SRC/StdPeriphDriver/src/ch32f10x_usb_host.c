@@ -8,6 +8,7 @@
 #include "ch32f10x_usb_host.h"
 #include "debug.h"
 
+
 /******************************** HOST DEVICE **********************************/
 UINT8  UsbDevEndp0Size;			
 UINT8  FoundNewDev;
@@ -39,7 +40,7 @@ __align(4) const UINT8  SetupClrEndpStall[] = { USB_REQ_TYP_OUT | USB_REQ_RECIP_
 void DisableRootHubPort(void)          
 {
 #ifdef	FOR_ROOT_UDISK_ONLY
-	CH579DiskStatus = DISK_DISCONNECT;
+	CH103DiskStatus = DISK_DISCONNECT;
 	
 #endif
 	
@@ -65,7 +66,7 @@ UINT8 AnalyzeRootHub( void )
 	if ( R8_USB_MIS_ST & RB_UMS_DEV_ATTACH ) {  
 		
 #ifdef DISK_BASE_BUF_LEN
-		if ( CH579DiskStatus == DISK_DISCONNECT
+		if ( CH103DiskStatus == DISK_DISCONNECT
 			
 #else
 		if ( ThisUsbDev.DeviceStatus == ROOT_DEV_DISCONNECT 
@@ -75,7 +76,7 @@ UINT8 AnalyzeRootHub( void )
 				DisableRootHubPort( );  
 					
 #ifdef DISK_BASE_BUF_LEN
-				CH579DiskStatus = DISK_CONNECT;
+				CH103DiskStatus = DISK_CONNECT;
 					
 #else
         ThisUsbDev.DeviceSpeed = R8_USB_MIS_ST & RB_UMS_DM_LEVEL ? 0 : 1;
@@ -87,7 +88,7 @@ UINT8 AnalyzeRootHub( void )
   }
 	
 #ifdef DISK_BASE_BUF_LEN
-  else if ( CH579DiskStatus >= DISK_CONNECT ) {
+  else if ( CH103DiskStatus >= DISK_CONNECT ) {
 		
 #else
   else if ( ThisUsbDev.DeviceStatus >= ROOT_DEV_CONNECTED ) {
@@ -160,7 +161,7 @@ void ResetRootHubPort( void )
 UINT8 EnableRootHubPort(void) 
 {
 #ifdef DISK_BASE_BUF_LEN
-  if ( CH579DiskStatus < DISK_CONNECT ) CH579DiskStatus = DISK_CONNECT;
+  if ( CH103DiskStatus < DISK_CONNECT ) CH103DiskStatus = DISK_CONNECT;
 	
 #else
   if ( ThisUsbDev.DeviceStatus < ROOT_DEV_CONNECTED ) ThisUsbDev.DeviceStatus = ROOT_DEV_CONNECTED;
@@ -230,13 +231,14 @@ UINT8 USBHostTransact( UINT8 endp_pid, UINT8 tog, UINT32 timeout )
 			if ( s == ERR_USB_CONNECT ) 			FoundNewDev = 1;
 			
 #ifdef DISK_BASE_BUF_LEN
-			if ( CH579DiskStatus == DISK_DISCONNECT ) return( ERR_USB_DISCON );      
-			if ( CH579DiskStatus == DISK_CONNECT ) return( ERR_USB_CONNECT );
+
+			if ( CH103DiskStatus == DISK_DISCONNECT ) return( ERR_USB_DISCON );      
+			if ( CH103DiskStatus == DISK_CONNECT ) return( ERR_USB_CONNECT );
       
 #else
 			if ( ThisUsbDev.DeviceStatus == ROOT_DEV_DISCONNECT ) return( ERR_USB_DISCON );
 			if ( ThisUsbDev.DeviceStatus == ROOT_DEV_CONNECTED ) return( ERR_USB_CONNECT );
-			
+
 #endif
 			Delay_Us( 200 );  
 		}
@@ -566,7 +568,7 @@ UINT8 InitRootDevice( PUINT8 DataBuf )
 			  if ( (dv_cls == 0x00) && (if_cls == USB_DEV_CLASS_STORAGE)) {  
 					
 	#ifdef	FOR_ROOT_UDISK_ONLY
-					 CH579DiskStatus = DISK_USB_ADDR;
+					 CH103DiskStatus = DISK_USB_ADDR;
 					 return( ERR_SUCCESS );
 				}
 			  else 	return( ERR_USB_UNSUPPORT );
@@ -625,7 +627,7 @@ UINT8 InitRootDevice( PUINT8 DataBuf )
 	}
 	
 #ifdef	FOR_ROOT_UDISK_ONLY
-	CH579DiskStatus = DISK_CONNECT;
+	CH103DiskStatus = DISK_CONNECT;
 	
 #else
 	ThisUsbDev.DeviceStatus = ROOT_DEV_FAILED;

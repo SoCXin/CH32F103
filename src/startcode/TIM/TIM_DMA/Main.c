@@ -92,7 +92,7 @@ void TIM1_DMA_Init( DMA_Channel_TypeDef* DMA_CHx, u32 ppadr, u32 memadr, u16 buf
 int main(void)
 {
 	USART_Printf_Init(115200);
-	printf( "Start @Chip_ID:%08x\r\n", DBGMCU->IDCODE );
+	printf("SystemClk:%d\r\n",SystemCoreClock);
 
 	TIM1_PWMOut_Init( 100, 48000-1, pbuf[0] );	
   TIM1_DMA_Init( DMA1_Channel5, (u32)TIM1_CH1CVR_ADDRESS, (u32)pbuf, 3 );

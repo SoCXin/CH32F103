@@ -77,7 +77,7 @@ void IWDG_Feed_Init( u16 prer, u16 rlr )
 int main(void)
 {
 	USART_Printf_Init(115200);
-	printf( "Start @Chip_ID:%08x\r\n", DBGMCU->IDCODE );
+	printf("SystemClk:%d\r\n",SystemCoreClock);
 	
   Delay_Init();
 	KEY_Init();

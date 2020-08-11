@@ -40,15 +40,15 @@ int main()
 {	
 	UINT8	s;
     
-    NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
-    Delay_Init();
+  NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
+  Delay_Init();
 	USART_Printf_Init(115200);
-	printf("Start @Chip_ID:%08x\r\n", DBGMCU->IDCODE );
+	printf("SystemClk:%d\r\n",SystemCoreClock);
 	
 	printf("USBHD   HOST Test\r\n");
 	USBHD_ClockCmd(RCC_USBCLKSource_PLLCLK_1Div5,ENABLE); 
-    pHOST_RX_RAM_Addr = RxBuffer;
-    pHOST_TX_RAM_Addr = TxBuffer;
+  pHOST_RX_RAM_Addr = RxBuffer;
+  pHOST_TX_RAM_Addr = TxBuffer;
 	USB_HostInit();
 	printf( "Wait Device In\n" );
 	
@@ -59,9 +59,17 @@ int main()
 		if ( R8_USB_INT_FG & RB_UIF_DETECT )
 		{  
 			R8_USB_INT_FG = RB_UIF_DETECT ; 
-			printf( "Wait Device In\n" );
+
 			s = AnalyzeRootHub( );   
-			if ( s == ERR_USB_CONNECT ) FoundNewDev = 1;
+			if ( s == ERR_USB_CONNECT ) 
+			{
+				printf( "New Device In\r\n" );		
+				FoundNewDev = 1;
+			}
+			if( s == ERR_USB_DISCON )
+			{
+				printf( "Device Out\r\n" );					
+			}
 		}
 		
 		if ( FoundNewDev || s == ERR_USB_CONNECT ) 
@@ -69,7 +77,8 @@ int main()
 			FoundNewDev = 0;
 			Delay_Ms( 200 ); 
 			s = InitRootDevice( Com_Buffer );  
-			//if ( s != ERR_SUCCESS ) 	return( s );
+			if ( s == ERR_SUCCESS ) printf( "Device Enum Succeed\r\n" );
+			else printf( "Device Enum Failed\r\n" );
 		}
 	}
 }

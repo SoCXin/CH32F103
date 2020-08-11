@@ -60,7 +60,7 @@ void ExtTrigger_Start_Two_TIM( u16 arr, u16 psc )
 int main(void)
 {
 	USART_Printf_Init(115200);
-	printf( "Start @Chip_ID:%08x\r\n", DBGMCU->IDCODE );
+	printf("SystemClk:%d\r\n",SystemCoreClock);
 
 	ExtTrigger_Start_Two_TIM( 0xFFFF, 48000-1);	
 	

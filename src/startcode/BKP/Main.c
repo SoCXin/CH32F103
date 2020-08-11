@@ -33,7 +33,7 @@ void BKP_Tamper_Init(void)
   printf( "BKP_DR4:%08x\r\n", BKP->DATAR4 );	
 	
 //	BKP_TamperPinLevelConfig( BKP_TamperPinLevel_High );  //TPAL:0£¬PC13 set input-pull-down	
-	BKP_TamperPinLevelConfig( BKP_TamperPinLevel_Low );	 //TPAL:1£¬PC13 input-pull-down	
+	BKP_TamperPinLevelConfig( BKP_TamperPinLevel_Low );	 //TPAL:1£¬PC13 input-pull-up	
 	
 	NVIC_InitStructure.NVIC_IRQChannel = TAMPER_IRQn;
 	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;
@@ -55,7 +55,7 @@ int main(void)
 {
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_4);
 	USART_Printf_Init(115200);
-	printf( "Start @Chip_ID:%08x\r\n", DBGMCU->IDCODE );
+	printf("SystemClk:%d\r\n",SystemCoreClock);
 	
 	BKP_Tamper_Init();
 	

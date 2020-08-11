@@ -114,16 +114,13 @@ void USB_Interrupts_Config(void)
 *******************************************************************************/
 void USB_Port_Set(FunctionalState NewState, FunctionalState Pin_In_IPU)
 {
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA,NewState);
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
 
 	if(NewState) {
 		_SetCNTR(_GetCNTR()&(~(1<<1)));
 		GPIOA->CFGHR&=0XFFF00FFF;
 		GPIOA->OUTDR&=~(3<<11);	//PA11/12=0
 		GPIOA->CFGHR|=0X00088000;	// IPD
-		
-		if(Pin_In_IPU) (EXTEN->EXTEN_CTR) |= EXTEN_USBD_PU_EN;     
-	
 	}
 	else
 	{	  
@@ -131,8 +128,10 @@ void USB_Port_Set(FunctionalState NewState, FunctionalState Pin_In_IPU)
 		GPIOA->CFGHR&=0XFFF00FFF;
 		GPIOA->OUTDR&=~(3<<11);	//PA11/12=0
 		GPIOA->CFGHR|=0X00033000;	// LOW
-	
 	}
+	
+	if(Pin_In_IPU) (EXTEN->EXTEN_CTR) |= EXTEN_USBD_PU_EN; 
+	else (EXTEN->EXTEN_CTR) &= ~EXTEN_USBD_PU_EN;
 }  
 
 

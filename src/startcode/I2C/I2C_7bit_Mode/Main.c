@@ -76,7 +76,7 @@ int main(void)
 	
 	Delay_Init();
 	USART_Printf_Init(460800);
-	printf( "Start @Chip_ID:%08x\r\n", DBGMCU->IDCODE );
+	printf("SystemClk:%d\r\n",SystemCoreClock);
 
 #if (I2C_MODE == HOST_MODE)
   printf("IIC Host mode\r\n");	
