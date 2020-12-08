@@ -18,6 +18,7 @@
 * CAN 2.0B
 * SPI(M/S) x 2 + UART x 3 + IIC x 2
 * 12bit ADC + 12bit DAC
+* 2.7V ~ 5.5V，GPIO同步供电电压
 * 封装(LQFP64M/LQFP48/QFN48)
 
 ### [资源收录](https://github.com/SoCXin/CH32F103)
