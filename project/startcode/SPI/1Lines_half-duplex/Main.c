@@ -5,6 +5,20 @@
 * Date               : 2019/10/15
 * Description        : Main program body.
 *******************************************************************************/ 
+
+/*
+ *@Note
+ 单线半双工模式，Master/Slave 模式数据收发：
+ Master：SPI1_SCK(PA5)、SPI1_MOSI(PA7)。
+ Slave：SPI1_SCK(PA5)、SPI1_MISO(PA6)。
+ 
+ 本例程演示 Master 发，Slave 收。
+ 注：两块板子分别下载 Master 和 Slave 程序，同时上电。
+     硬件连线：PA5 —— PA5
+	           PA7 —— PA6
+ 
+*/
+
 #include "debug.h"
 
 /* SPI Mode Definition */

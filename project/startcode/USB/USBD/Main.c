@@ -5,6 +5,17 @@
 * Date               : 2019/10/15
 * Description        : Main program body.
 *******************************************************************************/ 
+
+/*
+ *@Note
+ 模拟自定义USB设备（CH372设备）例程：
+ USBDM(PA11)、USBDP(PA12)。
+ 本例程演示使用 USBD 模拟自定义设备 CH372，和上位机通信。
+ 
+ 注：本例程需与上位机软件配合演示。
+
+*/
+
 #include "debug.h"
 #include "usb_lib.h"
 #include "hw_config.h"

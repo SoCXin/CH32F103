@@ -5,6 +5,18 @@
 * Date               : 2019/10/15
 * Description        : Main program body.
 *******************************************************************************/ 
+
+/*
+ *@Note
+ I2C使用DMA，Master/Slave 模式收发例程：
+ I2C1_SCL(PB6)、I2C1_SDA(PB7)。
+ 本例程演示7位地址模式， Master 通过 DMA 发，Slave 通过 DMA 收。
+ 注：两块板子分别下载 Master 和 Slave 程序，同时上电。
+     硬件连线：PB6 —— PB6
+	           PB7 —— PB7 
+ 
+*/
+
 #include "debug.h"
 
 /* I2C Mode Definition */

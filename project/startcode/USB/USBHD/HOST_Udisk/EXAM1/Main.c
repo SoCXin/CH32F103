@@ -3,9 +3,19 @@
 * Author             : WCH
 * Version            : V1.0.0
 * Date               : 2020/04/01
-* Description        : U盘文件字节读写示例程序，包括文件指针偏移，保存文件等
-					   支持: FAT12/FAT16/FAT32
+* Description        : Main program body.
 *******************************************************************************/ 
+
+/*
+ *@Note
+  U盘文件系统例程：
+  USBHDM(PB6)、USBHDP(PB7)。
+  本例程演示 U盘文件系统,以字节为单位读写文件，包括文件创建、删除、修改文件
+  属性，修改文件名。
+  注：文件系统支持 FAT12/FAT16/FAT32。
+
+*/
+
 #include "debug.h"
 #include "string.h"
 #include "CH32F103UFI.H" 

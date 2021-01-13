@@ -5,6 +5,20 @@
 * Date               : 2019/10/15
 * Description        : Main program body.
 *******************************************************************************/ 
+
+/*
+ *@Note
+ 硬件流控制模式例程：
+ USART1_Tx(PA9)、USART1_Rx(PA10)、USART1_CTS(PA11)、USART1_RTS(PA12)
+ 本例程演示 UART1 硬件流控制数据收发。
+ 注：两块板子分别下载该程序，同时上电。
+ 硬件连线：PA9 —— PA10
+           PA10 —— PA9
+           PA11 —— PA12
+		   PA12 —— PA11
+
+*/
+
 #include "debug.h"
 
 

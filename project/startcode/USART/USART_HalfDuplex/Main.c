@@ -5,6 +5,19 @@
 * Date               : 2019/10/15
 * Description        : Main program body.
 *******************************************************************************/ 
+
+/*
+ *@Note
+ 单线半双工模式，Master/Slave 模式收发例程：
+ Master：USART2_Tx(PA2)
+ Slave：USART3_Tx(PB10)
+ 
+ 本例程演示 UART2 和 USART3 单线半双工模式数据收发。
+ 注：
+     硬件连线：PA2 —— PB10
+
+*/
+
 #include "debug.h"
 
 

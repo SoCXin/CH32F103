@@ -5,6 +5,15 @@
 * Date               : 2019/10/15
 * Description        : Main program body.
 *******************************************************************************/ 
+
+/*
+ *@Note
+ 定时器触发DAC转换例程：
+ DAC通道0(PA4)输出
+ 通过TIM3_TRGO事件触发1次DAC转换，PA4输出相应的电压。
+
+*/
+
 #include "debug.h"
 
 /* Global define */

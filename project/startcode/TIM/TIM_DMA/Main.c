@@ -5,6 +5,15 @@
 * Date               : 2019/10/15
 * Description        : Main program body.
 *******************************************************************************/ 
+
+/*
+ *@Note
+ 定时器使用DMA例程：
+ TIM1_CH1(PA8)
+ 本例程演示 使用 DMA 通过 TIM1_CH1(PA8) 引脚输出 PWM。
+ 
+*/
+
 #include "debug.h"
 
 /* CH1CVR register Definition */
@@ -37,7 +46,8 @@ void TIM1_PWMOut_Init( u16 arr, u16 psc, u16 ccp )
 	TIM_TimeBaseInitStructure.TIM_Period = arr;	
 	TIM_TimeBaseInitStructure.TIM_Prescaler = psc;	
 	TIM_TimeBaseInitStructure.TIM_ClockDivision = TIM_CKD_DIV1;	
-	TIM_TimeBaseInitStructure.TIM_CounterMode = TIM_CounterMode_Up;	
+	TIM_TimeBaseInitStructure.TIM_CounterMode = TIM_CounterMode_Up;
+	TIM_TimeBaseInitStructure.TIM_RepetitionCounter = 0;		
 	TIM_TimeBaseInit( TIM1, &TIM_TimeBaseInitStructure);	
 
   TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM2;		

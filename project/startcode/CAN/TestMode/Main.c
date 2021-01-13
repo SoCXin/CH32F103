@@ -5,6 +5,15 @@
 * Date               : 2019/10/15
 * Description        : Main program body.
 *******************************************************************************/ 
+
+/*
+ *@Note
+ CAN测试模式，包括静默模式、回环模式、回环静默模式：
+ CAN_Tx(PB9),CAN_Rx(PB8)
+ Standard_Frame：包括 1个32bit过滤器屏蔽位模式。
+
+*/
+
 #include "debug.h"
 
 /* CAN Test Mode Definition */
@@ -134,12 +143,12 @@ u8 CAN_Receive_Msg( u8 *buf )
 	
 	CanRxMsg CanRxStructure;
 	
-	if( CAN_MessagePending( CAN1, CAN_Filter_FIFO1 ) == 0)		
+	if( CAN_MessagePending( CAN1, CAN_FIFO1 ) == 0)		
 	{
 		return 0;
 	}
 	
-	CAN_Receive( CAN1, CAN_Filter_FIFO1, &CanRxStructure );	
+	CAN_Receive( CAN1, CAN_FIFO1, &CanRxStructure );	
 	
 	for( i=0; i<8; i++ )
 	{

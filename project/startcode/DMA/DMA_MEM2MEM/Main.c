@@ -5,6 +5,14 @@
 * Date               : 2019/10/15
 * Description        : Main program body.
 *******************************************************************************/ 
+
+/*
+ *@Note
+ 储存器到储存器模式例程：
+ 通过DMA将 SRC_BUF[Buf_Size] 传输到 DST_BUF[Buf_Size]。
+
+*/
+
 #include "debug.h"
 
 /* Global define */

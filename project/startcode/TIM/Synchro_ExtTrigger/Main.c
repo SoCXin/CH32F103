@@ -5,6 +5,19 @@
 * Date               : 2019/10/15
 * Description        : Main program body.
 *******************************************************************************/ 
+
+/*
+ *@Note
+ 从模式例程：
+ TIM1_CH1(PA8)
+ 本例程演示当 TIM_CH1(PA8) 引脚检测到上升沿时，在不同从模式下，TIM1 不同工作方式。
+ RESET_MODE：TIM1->CNT 复位重新计数
+ GATED_MODE：PA8引脚输入低电平，TIM1->CNT 正常计数，否则停止计数。
+ TRIGGER__MODE：TIM1->CNT 继续计数。
+ 注：在 debug 模式下查看 TIM1->CNT 观察现象。
+ 
+*/
+
 #include "debug.h"
 
 /* Slave Mode Definition */

@@ -5,6 +5,21 @@
 * Date               : 2019/10/15
 * Description        : Main program body.
 *******************************************************************************/ 
+
+/*
+ *@Note
+ 同步模式例程：
+ Master：USART1_CK(PA8)、USART1_Tx(PA9)、USART1_Rx(PA10)。
+ Slave：SPI1_SCK(PA5)、SPI1_MISO(PA6)、SPI1_MOSI(PA7)。
+ 本例程演示使用 USART1 作主机和 SPI1作从机，全双工收发数据。
+ 
+ 注：使用 USART2 作为打印调试口，注意修改 debug.h 中 DEBUG。
+ 硬件连线：PA8  —— PA5
+	       PA9  —— PA7
+	       PA10 —— PA6
+
+*/
+
 #include "debug.h"
 
 

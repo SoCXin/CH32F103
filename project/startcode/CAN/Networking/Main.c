@@ -5,6 +5,18 @@
 * Date               : 2019/10/15
 * Description        : Main program body.
 *******************************************************************************/ 
+
+/*
+ *@Note
+ CAN正常模式，标准帧和扩展帧数据收发：
+ CAN_Tx(PB9),CAN_Rx(PB8)
+ 该例程需外接CAN收发器，可演示 Standard_Frame 和 Extended_Frame。
+ Standard_Frame：包括 1个32bit过滤器屏蔽位模式、2个16bit过滤器屏蔽位模式、
+ 1个32bit标识符列表模式、2个16bit标识符列表模式；
+ Extended_Frame：1个32bit过滤器屏蔽位模式。
+
+*/
+
 #include "debug.h"
 
 /* CAN Mode Definition */

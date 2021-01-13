@@ -5,6 +5,14 @@
 * Date               : 2019/10/15
 * Description        : Main program body.
 *******************************************************************************/ 
+
+/*
+ *@Note
+ GPIO例程：
+ PA0推挽输出。
+ 
+*/
+
 #include "debug.h"
 
 /* Global define */

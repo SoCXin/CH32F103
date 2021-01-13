@@ -5,20 +5,26 @@
 * Date               : 2019/10/15
 * Description        : Main program body.
 *******************************************************************************/ 
-#include "debug.h"
-#include "string.h"
 
-/*****************************************
-*@Note
-  Winbond W25Qxx SPIFLASH	
-pins:   
+/*
+ *@Note
+ SPI接口操作FLASH外设例程：
+ Master：SPI1_SCK(PA5)、SPI1_MISO(PA6)、SPI1_MOSI(PA7)。
+ 本例程演示 SPI 操作 Winbond W25Qxx SPIFLASH。
+ 注：
+ pins:   
 	CS   —— PA2
 	DO   —— PA6(SPI1_MISO)
 	WP   —— 3.3V
 	DI   —— PA7(SPI1_MOSI)
-  CLK  —— PA5(SPI1_SCK)
-  HOLD —— 3.3V 
-*******************************************/
+    CLK  —— PA5(SPI1_SCK)
+    HOLD —— 3.3V 
+ 
+*/
+
+#include "debug.h"
+#include "string.h"
+
 
 /* Winbond SPIFalsh ID */
 #define W25Q80 	0XEF13 	

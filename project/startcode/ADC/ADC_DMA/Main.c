@@ -5,6 +5,14 @@
 * Date               : 2019/10/15
 * Description        : Main program body.
 *******************************************************************************/ 
+
+/*
+ *@Note 
+ ADC使用DMA采样例程：
+ ADC通道2(PA2),规则组通道通过DMA获取 ADC连续1024次转换数据。
+ 
+*/
+
 #include "debug.h"
 
 /* Global Variable */ 

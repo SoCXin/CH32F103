@@ -3,9 +3,18 @@
 * Author             : WCH
 * Version            : V1.0.0
 * Date               : 2019/10/15
-* Description        : U盘文件长文件名例程等
-					   支持: FAT12/FAT16/FAT32
+* Description        : Main program body.
 *******************************************************************************/ 
+
+/*
+ *@Note
+  U盘文件系统例程：
+  USBHDM(PB6)、USBHDP(PB7)。
+  本例程演示 U盘文件系统,创建长文件名文件。
+  注：文件系统支持 FAT12/FAT16/FAT32。
+
+*/
+
 #include "debug.h"
 #include "string.h"
 #include "CH32F103UFI.H" 

@@ -5,6 +5,22 @@
 * Date               : 2019/10/15
 * Description        : Main program body.
 *******************************************************************************/ 
+
+/*
+ *@Note
+ 硬件NSS模式，Master/Slave 模式数据收发：
+ Master：SPI1_NSS(PA4)、SPI1_SCK(PA5)、SPI1_MISO(PA6)、SPI1_MOSI(PA7)。
+ Slave：SPI1_NSS(PA4)、SPI1_SCK(PA5)、SPI1_MISO(PA6)、SPI1_MOSI(PA7)。
+ 
+ 本例程演示在硬件 NSS 模式下，Master 和 Slave 同时全双工收发。
+ 注：两块板子分别下载 Master 和 Slave 程序，同时上电。
+     硬件连线：PA4 —— PA4
+			   PA5 —— PA5
+	           PA6 —— PA6
+			   PA7 —— PA7
+ 
+*/
+
 #include "debug.h"
 #include "string.h"
 

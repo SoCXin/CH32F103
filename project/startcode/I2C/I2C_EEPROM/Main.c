@@ -5,15 +5,20 @@
 * Date               : 2019/10/15
 * Description        : Main program body.
 *******************************************************************************/ 
+
+/*
+ *@Note
+ I2C接口操作EEPROM外设例程：
+ I2C1_SCL(PB6)、I2C1_SDA(PB7)。
+ 本例程使用 EEPROM 为 AT24Cxx系列。
+ 操作步骤：
+ READ EEPROM：Start + 0xA0 + 8bit Data Address + Start + 0xA1 + Read Data + Stop.
+ WRITE EERPOM：Start + 0xA0 + 8bit Data Address + Write Data + Stop.	 
+ 
+*/
+
 #include "debug.h"
 
-/********************************************************************** 
-*@Note:
-AT24Cxx：
-
-READ EEPROM：Start + 0xA0 + 8bit Data Address + Start + 0xA1 + Read Data + Stop.
-WRITE EERPOM：Start + 0xA0 + 8bit Data Address + Write Data + Stop.	 
-*******************************************************************************/
 /* EERPOM DATA ADDRESS Length Definition */
 #define Address_8bit  0
 #define Address_16bit  1

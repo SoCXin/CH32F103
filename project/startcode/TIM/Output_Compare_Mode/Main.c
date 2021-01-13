@@ -5,6 +5,16 @@
 * Date               : 2019/10/15
 * Description        : Main program body.
 *******************************************************************************/ 
+
+/*
+ *@Note
+ 输出比较模式例程：
+ TIM1_CH1(PA8)
+ 本例程演示 TIM_CH1(PA8) 引脚在4种输出比较模式下，输出波形。输出比较模式包括
+ OutCompare_Timing、OutCompare_Active、OutCompare_Inactive、OutCompare_Toggle。
+ 
+*/
+
 #include "debug.h"
 
 /* Output Compare Mode Definition */

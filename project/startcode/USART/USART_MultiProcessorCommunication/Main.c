@@ -5,6 +5,21 @@
 * Date               : 2019/10/15
 * Description        : Main program body.
 *******************************************************************************/ 
+
+/*
+ *@Note
+ 多处理器通信模式例程：
+ Master：USART2_Tx(PA2)、USART2_Rx(PA3)。
+ Slave：USART3_Tx(PB10)、USART3_Rx(PB11)。
+ 
+ 本例程演示 USART2 作主机，USART3 作从机，USART2发送地址 0x02，使 USART3退出
+ 静默模式，完成后续通信。
+ 注：
+     硬件连线：PA2 —— PB11
+	           PA3 —— PB10
+
+*/
+
 #include "debug.h"
 
 

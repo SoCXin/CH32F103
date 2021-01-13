@@ -5,6 +5,15 @@
 * Date               : 2019/10/15
 * Description        : Main program body.
 *******************************************************************************/ 
+
+/*
+ *@Note
+ CAN时间触发通信模式：
+ CAN_Tx(PB9),CAN_Rx(PB8)
+ 在Extended_Frame，1个32bit过滤器屏蔽位通信配置下，演示时间触发通信模式。
+
+*/
+
 #include "debug.h"
 
 /* CAN Mode Definition */

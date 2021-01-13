@@ -1,0 +1,20 @@
+{
+    "type":"MCU",
+    "name":"CH32F103",
+    "package":["LQFP64","LQFP48","QFN48"],
+    "LQFP64": {
+        "name":"CH32F103R8T6",
+        "peripheral": ["ADC","TIM","UART1","UART2","I2C","SPI","PWM"],
+        "GPIO":7
+    },
+    "LQFP48": {
+        "name":"CH32F103C8T6",
+        "peripheral": ["ADC","TIM","UART1","UART2","I2C","SPI","PWM"],
+        "GPIO":13
+    },
+    "QFN48": {
+        "name":"CH32F103C8U6",
+        "peripheral": ["ADC","TIM","UART1","UART2","I2C","SPI","PWM"],
+        "GPIO":18
+    }
+}

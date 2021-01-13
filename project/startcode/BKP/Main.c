@@ -5,6 +5,15 @@
 * Date               : 2019/10/15
 * Description        : Main program body.
 *******************************************************************************/ 
+
+/*
+ *@Note
+ BKP侵入检测例程：
+ 侵入检测引脚(PC13)，当产生侵入检测事件时，所有数据备份寄存器内容被清除，
+ 并触发侵入检测中断。
+
+*/
+
 #include "debug.h"
 
 /*******************************************************************************
@@ -20,7 +29,8 @@ void BKP_Tamper_Init(void)
 	RCC_APB1PeriphClockCmd( RCC_APB1Periph_PWR | RCC_APB1Periph_BKP, ENABLE );	
 
 	BKP_TamperPinCmd( DISABLE );	
-  PWR_BackupAccessCmd( ENABLE );	 
+    PWR_BackupAccessCmd( ENABLE );
+    BKP_ClearFlag();
 	
 	BKP_WriteBackupRegister( BKP_DR1, 0x9880 );	
 	BKP_WriteBackupRegister( BKP_DR2, 0x5678 );

@@ -2,7 +2,7 @@
 
 [![sites](http://182.61.61.133/link/resources/SoC.png)](http://www.SoC.Xin)
 
-#### [Vendor](https://github.com/SoCXin/Vendor)：[WCH](https://github.com/SoCXin/WCH)
+#### [Vendor](https://github.com/SoCXin/Vendor)：[WCH](http://www.wch.cn/)
 #### [Core](https://github.com/SoCXin/Cortex)：[Cortex M3](https://github.com/SoCXin/CM3)
 #### [Level](https://github.com/SoCXin/Level)：72MHz
 
@@ -31,4 +31,4 @@
 
 [CH32F103](https://github.com/SoCXin/CH32F103) 相较于其他的XX32XXX产品，接口相对集中丰富，具有USB、CAN2.0B 、DAC，支持5.5V电压
 
-###  [SoC.芯](http://www.SoC.Xin)
+###  [www.SoC.xin(芯)](http://www.SoC.Xin)

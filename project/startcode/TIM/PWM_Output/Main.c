@@ -5,6 +5,15 @@
 * Date               : 2019/10/15
 * Description        : Main program body.
 *******************************************************************************/ 
+
+/*
+ *@Note
+ PWM输出例程：
+ TIM1_CH1(PA8)
+ 本例程演示 TIM_CH1(PA8) 引脚在 PWM模式1和PWM模式2 下，输出 PWM。
+ 
+*/
+
 #include "debug.h"
 
 /* PWM Output Mode Definition */

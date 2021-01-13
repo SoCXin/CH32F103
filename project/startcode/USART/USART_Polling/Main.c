@@ -5,6 +5,20 @@
 * Date               : 2019/10/15
 * Description        : Main program body.
 *******************************************************************************/ 
+
+/*
+ *@Note
+ 轮询收发模式例程：
+ Master：USART2_Tx(PA2)、USART2_Rx(PA3)。
+ Slave：USART3_Tx(PB10)、USART3_Rx(PB11)。
+ 本例程演示 USART2 发，USART3 收。
+ 
+ 注：
+     硬件连线：PA2 —— PB11
+	           PA3 —— PB10
+
+*/
+
 #include "debug.h"
 
 

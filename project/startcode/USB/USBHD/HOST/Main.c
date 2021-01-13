@@ -5,6 +5,14 @@
 * Date               : 2019/10/15
 * Description        : Main program body.
 *******************************************************************************/ 
+
+/*
+ *@Note
+  USB设备的简易枚举过程例程：
+  USBHDM(PB6)、USBHDP(PB7)。
+
+*/
+
 #include "debug.h"
 #include "string.h"
 

@@ -5,6 +5,15 @@
 * Date               : 2019/10/15
 * Description        : Main program body.
 *******************************************************************************/ 
+
+/*
+ *@Note
+ 独立看门狗例程：
+ 本例程演示 PA0 引脚下拉输入，当输入高电平时，进行喂狗。若不喂狗，
+ 则 3.2s 后触发独立看门狗复位。
+
+*/
+
 #include "debug.h"
 
 #define KEY0 GPIO_ReadInputDataBit( GPIOA, GPIO_Pin_0)	//PA0
