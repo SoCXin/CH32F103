@@ -8,7 +8,7 @@
     "package":["LQFP64","LQFP48","QFN48"],
     "manufacturer": {
         "vendor":"WCH",
-        "homepage": "http://www.wch.cn/products/CH554.html"
+        "homepage": "http://www.wch.cn/products/CH32F103.html"
     },
     "url":"http://www.SoC.xin/CH32F103",
     "repo":"https://github.com/SoCXin/CH32F103",
