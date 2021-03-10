@@ -2,8 +2,7 @@
 
 [![sites](http://182.61.61.133/link/resources/SoC.png)](http://www.SoC.Xin)
 
-#### [Vendor](https://github.com/SoCXin/Vendor)：[WCH](http://www.wch.cn/)
-#### [Core](https://github.com/SoCXin/Cortex)：[Cortex M3](https://github.com/SoCXin/CM3)
+#### [WCH](http://www.wch.cn/)：[Cortex M3](https://github.com/SoCXin/CM3)
 #### [Level](https://github.com/SoCXin/Level)：72MHz
 
 ## [描述](https://github.com/SoCXin/CH32F103/wiki)
@@ -19,7 +18,6 @@
 * SPI(M/S) x 2 + UART x 3 + IIC x 2
 * 12bit ADC + 12bit DAC
 * 2.7V ~ 5.5V，GPIO同步供电电压
-* 封装(LQFP64M/LQFP48/QFN48)
 
 ### [资源收录](https://github.com/SoCXin/CH32F103)
 
@@ -31,4 +29,4 @@
 
 [CH32F103](https://github.com/SoCXin/CH32F103) 相较于其他的XX32XXX产品，接口相对集中丰富，具有USB、CAN2.0B 、DAC，支持5.5V电压
 
-###  [www.SoC.xin(芯)](http://www.SoC.Xin)
+###  [芯云 www.SoC.xin](http://www.SoC.Xin)
