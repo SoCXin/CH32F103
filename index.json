@@ -1,65 +1,33 @@
 {
     "type":"MCU",
     "name":"CH32F103",
-    "series":["CH32F103"],
-    "price":[4,6],
-    "description":"WCH Cortex M3 MCU",
-    "peripheral": ["TIM","ADC","USB","UART","SPI","LDO","PWM"],
-    "package":["LQFP64","LQFP48","QFN48"],
+    "title": "WCH Cortex-M3 CH32F103 MCU",
+    "description":"WCH Cortex-M3 CH32F103 MCU",
+    "version":"1.0.0",
+    "Core": {
+        "num": 1,
+        "type":"Cortex-M3",
+        "Freq": 72,
+        "DMIPS": 100,
+        "CoreMark": 160
+    },
     "manufacturer": {
         "vendor":"WCH",
         "homepage": "http://www.wch.cn/products/CH32F103.html"
     },
-    "url":"http://www.SoC.xin/CH32F103",
-    "repo":"https://github.com/SoCXin/CH32F103",
-    "version":"1.0.0",
-    "Core": {
-        "num": 1,
-        "architecture":"Cortex M3",
-        "Freq":[8,24]
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/SoCXin/CH32F103.git"
     },
-    "UART": {
-        "mark": ["UART1","UART2"],
-        "BIT":[5,6,7,8,9],
-        "ISO7816":true,
-        "IrDA":true,
-        "LIN":true,
-        "FIFO": 16,
-        "BPS": [48,3000000]
-    },
-    "TIM": {
-        "resolution":[16,16,16],
-        "rate": 1024
-    },
-    "CLK": {
-        "HSI": [24000],
-        "LSI": [32],
-        "PLL": [16000,96000],
-        "DIV": [1,128],
-        "SYS": [187,24000],
-        "accuracy": 0.02
-    },
-    "ADC": {
-        "num": 1,
-        "channel": 4,
-        "resolution": 8,
-        "rate": 2400
-    },
-    "USB": {
-        "num": 1,
-        "FIFO": 64,
-        "more":["FS","type-C","Host","Device"]
-    },
+    "series":["CH32F103C","CH32F103R"],
+    "package":["LQFP64M","QFN68","QFN48"],
+    "peripheral": ["TIM","ADC","USB","UART","SPI","LDO","PWM"],
+    "price":[4,16],
     "PWR": {
         "VDD": [2800,5000],
         "Ivdd": 3.5,
         "LDO": [5000,3300],
         "rate": 1024
-    },
-    "PWM": {
-        "num": 2,
-        "resolution": 8,
-        "rate": 256
     },
     "EMC": {
         "EFT": 2000,
@@ -67,7 +35,17 @@
     },
     "upload": {
         "ISP": true,
+        "IAP": true,
         "SWD": true,
         "speed": 115200
-    }
+    },
+    "keywords": [
+        "dev-platform",
+        "ARM",
+        "Cortex-M",
+        "WCH",
+        "CH32F103",
+        "DAC","SDIO","CAN","I2C","RTC","SPI",
+        "3.6V","1.8V"
+    ]
 }
