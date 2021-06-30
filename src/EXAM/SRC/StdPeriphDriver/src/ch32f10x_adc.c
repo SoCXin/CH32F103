@@ -1008,7 +1008,7 @@ void ADC_ClearITPendingBit(ADC_TypeDef* ADCx, uint16_t ADC_IT)
 /*******************************************************************************
 * Function Name  : TempSensor_Volt_To_Temper
 * Description    : Internal Temperature Sensor Voltage to temperature.
-* Input          : Value: Voltage Value.
+* Input          : Value: Voltage Value(mv).
 * Return         : Temper: Temperature Value.
 *******************************************************************************/
 s32 TempSensor_Volt_To_Temper(s32 Value)

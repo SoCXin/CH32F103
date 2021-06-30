@@ -118,8 +118,7 @@ int main(void)
 		
 #if (SPI_MODE == HOST_MODE)
 	printf("HOST Mode\r\n");	
-	Delay_Ms(2000);
-	SPI_I2S_ITConfig( SPI1, SPI_I2S_IT_TXE , ENABLE );	
+	Delay_Ms(2000);	
 
 #endif
 	

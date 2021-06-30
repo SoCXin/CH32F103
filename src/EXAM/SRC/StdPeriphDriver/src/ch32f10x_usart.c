@@ -206,7 +206,7 @@ void USART_ClockInit(USART_TypeDef* USARTx, USART_ClockInitTypeDef* USART_ClockI
 
 /*******************************************************************************
 * Function Name  : USART_ClockStructInit
-* Description    : Fills each USART_InitStruct member with its default value.
+* Description    : Fills each USART_ClockStructInit member with its default value.
 * Input          : USART_ClockInitStruct: pointer to a USART_ClockInitTypeDef
 *      structure which will be initialized.
 * Return         : None

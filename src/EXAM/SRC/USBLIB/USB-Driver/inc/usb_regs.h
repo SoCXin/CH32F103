@@ -38,7 +38,7 @@ enum EP_BUF_NUM
 /******************************************************************************/
 
 /* Control register */
-#define CNTR    ((__IO unsigned *)(RegBase + 0x40))
+#define CNTLR    ((__IO unsigned *)(RegBase + 0x40))
 /* Interrupt status register */
 #define ISTR    ((__IO unsigned *)(RegBase + 0x44))
 /* Frame number register */
@@ -186,7 +186,7 @@ enum EP_BUF_NUM
 #define EPRX_DTOGMASK  (EPRX_STAT|EPREG_MASK)
 
 /* SetCNTR */
-#define _SetCNTR(wRegValue)  (*CNTR   = (uint16_t)wRegValue)
+#define _SetCNTR(wRegValue)  (*CNTLR   = (uint16_t)wRegValue)
 
 /* SetISTR */
 #define _SetISTR(wRegValue)  (*ISTR   = (uint16_t)wRegValue)
@@ -198,7 +198,7 @@ enum EP_BUF_NUM
 #define _SetBTABLE(wRegValue)(*BTABLE = (uint16_t)(wRegValue & 0xFFF8))
 
 /* GetCNTR */
-#define _GetCNTR()   ((uint16_t) *CNTR)
+#define _GetCNTR()   ((uint16_t) *CNTLR)
 
 /* GetISTR */
 #define _GetISTR()   ((uint16_t) *ISTR)

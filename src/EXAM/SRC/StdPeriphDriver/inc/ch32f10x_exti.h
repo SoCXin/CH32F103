@@ -68,7 +68,7 @@ typedef struct
 #define EXTI_Line17      ((uint32_t)0x20000)  /* External interrupt line 17 Connected to the RTC Alarm event */
 #define EXTI_Line18      ((uint32_t)0x40000)  /* External interrupt line 18 Connected to the USB Device/USB OTG FS
                                                  Wakeup from suspend event */                                    
-#define EXTI_Line19      ((uint32_t)0x80000)  /* External interrupt line 19 Connected to the Ethernet Wakeup event */
+#define EXTI_Line19      ((uint32_t)0x80000)  /* External interrupt line 19 Connected to the USBHD Wakeup event */
                                                             
 
 void EXTI_DeInit(void);
