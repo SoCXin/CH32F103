@@ -3,5 +3,8 @@
 *.log
 .pio/
 .vscode/
+DebugConfig
 list
 obj
+*.uvgui*
+*.uvopt*
